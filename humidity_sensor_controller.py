@@ -85,7 +85,7 @@ def customShadowCallback_Delta(payload, responseStatus, token):
 	# in both Py2.x and Py3.x
 	print(responseStatus)
 	#payloadDict = json.loads(payload)
-        Bot.shadowGet(customShadowCallback_Get, 5)
+	Bot.shadowGet(customShadowCallback_Get, 5)
 	#print payloadDict
 	#print("++++++++DELTA++++++++++")
 	#print("property: " + str(payloadDict["state"]["pwm"]))
@@ -217,6 +217,8 @@ chip = 0
 spi = spidev.SpiDev()
 spi.open(0, chip)
 
+TARGET_HUMIDITY = '80.0'
+
 # Loop forever
 while True:
 	v = []
@@ -230,9 +232,9 @@ while True:
         v.append(str(Volts(ReadADCChannel(7), 2, Vref)/Vref*100))
 
 	print v
-	voltagePayload = '{"state":{"reported":{"humidity_percentages":[' + ','.join(v) + ']}}}' 
+	voltagePayload = '{"state":{"reported":{"humidity_percentages":[' + ','.join(v) + ']}, "desired":{"humidity_percentages":[' + ','.join([TARGET_HUMIDITY,'0.0','0.0','0.0','0.0','0.0','0.0','0.0']) + ']}}}' 
 	print voltagePayload
 	myDeviceShadow.shadowGet(customShadowCallback_Get, 5)
-        myDeviceShadow.shadowUpdate(voltagePayload, customShadowCallback_Update, 5)
+	myDeviceShadow.shadowUpdate(voltagePayload, customShadowCallback_Update, 5)
 
-	time.sleep(2)
+	time.sleep(10)
