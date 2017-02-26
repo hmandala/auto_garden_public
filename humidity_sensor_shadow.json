@@ -1,0 +1,40 @@
+{
+  "desired": {
+    "welcome": "aws-iot",
+    "humidity_percentages": [
+      80,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "reported": {
+    "welcome": "aws-iot",
+    "humidity_percentages": [
+      83.6,
+      4.2,
+      6.2,
+      7,
+      0.2,
+      0.8,
+      0.8,
+      1
+    ]
+  },
+  "delta": {
+    "humidity_percentages": [
+      80,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
